@@ -1,0 +1,25 @@
+#include <Adafruit_DHT.h>
+
+
+#define DHTPIN D2
+#define DHTTYPE DHT22
+
+DHT dht(DHTPIN,DHTTYPE);
+
+void setup() {
+    
+  dht.begin();      //initiate sensor
+  
+}
+
+void loop() {
+  
+  float t = dht.getTempCelcius();       //retrive temperature reading       
+  Particle.publish("temp", String(t), PRIVATE);         //send reading through webhook
+  delay(5000);               // wait for 5 seconds
+
+          
+  
+}
+
+
